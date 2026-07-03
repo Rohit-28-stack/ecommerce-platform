@@ -19,19 +19,52 @@ function AdminDashboard() {
 
   if (!stats) return <h2>Loading...</h2>
 
-  return (
-    <div>
-      <h1>Admin Dashboard</h1>
+return (
+  <div className="min-h-screen bg-gradient-to-br from-gray-100 via-white to-blue-50 p-8">
 
-      <h3>Total Users: {stats.totalUsers}</h3>
+    {/* Header */}
+    <h1 className="text-3xl font-bold text-gray-800 mb-8">
+      Admin Dashboard
+    </h1>
 
-      <h3>Total Products: {stats.totalProducts}</h3>
+    {/* Stats Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-      <h3>Total Orders: {stats.totalOrders}</h3>
+      {/* Users */}
+      <div className="bg-white rounded-2xl shadow-md p-6 border hover:shadow-xl transition">
+        <h3 className="text-gray-500">Total Users</h3>
+        <p className="text-3xl font-bold text-purple-600 mt-2">
+          {stats.totalUsers}
+        </p>
+      </div>
 
-      <h3>Total Revenue: ₹{stats.totalRevenue}</h3>
+      {/* Products */}
+      <div className="bg-white rounded-2xl shadow-md p-6 border hover:shadow-xl transition">
+        <h3 className="text-gray-500">Total Products</h3>
+        <p className="text-3xl font-bold text-blue-600 mt-2">
+          {stats.totalProducts}
+        </p>
+      </div>
+
+      {/* Orders */}
+      <div className="bg-white rounded-2xl shadow-md p-6 border hover:shadow-xl transition">
+        <h3 className="text-gray-500">Total Orders</h3>
+        <p className="text-3xl font-bold text-green-600 mt-2">
+          {stats.totalOrders}
+        </p>
+      </div>
+
+      {/* Revenue */}
+      <div className="bg-gradient-to-r from-orange-500 to-yellow-400 text-white rounded-2xl shadow-md p-6 hover:shadow-xl transition">
+        <h3 className="opacity-90">Total Revenue</h3>
+        <p className="text-3xl font-bold mt-2">
+          ₹{stats.totalRevenue}
+        </p>
+      </div>
+
     </div>
-  )
+  </div>
+);
 }
 
 export default AdminDashboard

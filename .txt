@@ -1,0 +1,21 @@
+Dashboard
+✅ Total Users
+✅ Total Products
+✅ Total Orders
+✅ Total Revenue
+👥 Manage Users
+✅ View Users
+✅ Search Users
+✅ Create User
+✅ Update User
+✅ Delete User
+✅ Change User Role (User ↔ Admin)
+✅ Block/Unblock User (optional)
+📦 Manage Products
+✅ Add Product
+✅ Update Product
+✅ Delete Product
+🛒 Manage Orders
+✅ View Orders
+✅ Update Order Status
+✅ Delete Order (optional)

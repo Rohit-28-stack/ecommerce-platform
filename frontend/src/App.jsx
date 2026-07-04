@@ -43,6 +43,7 @@ function AppContent() {
         <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
         <Route path="/products" element={<AllProducts />} />
         <Route path="/about" element={<About />} />
+        
 
         {/* ADMIN */}
         <Route

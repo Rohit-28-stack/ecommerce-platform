@@ -6,6 +6,7 @@ function ManageProducts() {
   const [showProducts, setShowProducts] = useState(false);
   const [products, setProducts] = useState([]);
   const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
     name: "",
@@ -38,6 +39,7 @@ function ManageProducts() {
   // ---------------- CREATE PRODUCT ----------------
   const handleCreate = async () => {
     try {
+       setLoading(true);
       const formData = new FormData();
 
       formData.append("name", form.name);
@@ -59,6 +61,7 @@ function ManageProducts() {
       });
 
       toast.success("Product added successfully!");
+      fetchProducts();  
 
       setForm({
         name: "",
@@ -69,10 +72,15 @@ function ManageProducts() {
       });
 
       setImages([]);
+      fetchProducts();
+
     } catch (err) {
       console.log(err);
       toast.error("Error adding product");
     }
+    finally {
+    setLoading(false);
+  }
   };
 
 
@@ -231,12 +239,21 @@ function ManageProducts() {
 
 </div>
 
-            <button
-              onClick={handleCreate}
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-semibold hover:scale-105 transition"
-            >
-              Add Product
-            </button>
+          <button
+  onClick={handleCreate}
+  disabled={loading}
+  className={`flex items-center justify-center gap-2 py-3 rounded-xl text-white font-semibold transition ${
+    loading
+      ? "bg-gray-400 cursor-not-allowed"
+      : "bg-gradient-to-r from-blue-600 to-indigo-600 hover:scale-105"
+  }`}
+>
+  {loading && (
+    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+  )}
+
+  {loading ? "Uploading..." : "Add Product"}
+</button>
 
           </div>
         </div>

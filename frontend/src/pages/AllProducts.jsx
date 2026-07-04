@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import API from "../services/api";
 import ProductCard from "../components/ProductCard";
 import EmptyState from "../components/EmptyState";
+import { useSearchParams } from "react-router-dom";
 
 function AllProducts() {
   const [products, setProducts] = useState([]);
@@ -11,13 +12,15 @@ function AllProducts() {
   const [totalPages, setTotalPages] = useState(1);
 
   // Filters
-  const [search, setSearch] = useState("");
+  const [searchParams] = useSearchParams();
+  const [search, setSearch] = useState(
+  searchParams.get("search") || ""
+);
   const [category, setCategory] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [stock, setStock] = useState("");
   const [sort, setSort] = useState("");
-
   const categories = [
    
     "Mobiles",
@@ -28,6 +31,10 @@ function AllProducts() {
     "Accessories"
    
   ];
+  useEffect(() => {
+  setSearch(searchParams.get("search") || "");
+  setPage(1);
+}, [searchParams]);
 
   useEffect(() => {
     fetchProducts();

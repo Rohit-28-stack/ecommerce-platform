@@ -142,21 +142,21 @@ function Cart() {
     }
 
   };
- const demoPayment = async () => {
-  try {
-    await API.post("/orders", {
-      address,
-      paymentMethod: "Demo"
-    });
+  const demoPayment = async () => {
+    try {
+      await API.post("/orders", {
+        address,
+        paymentMethod: "Demo"
+      });
 
-    toast.success("Order placed successfully");
-    fetchCart();
+      toast.success("Order placed successfully");
+      fetchCart();
 
-  } catch (err) {
-    console.log(err);
-    toast.error(err.response?.data?.message || "Order failed");
-  }
-};
+    } catch (err) {
+      console.log(err);
+      toast.error(err.response?.data?.message || "Order failed");
+    }
+  };
 
 
 
@@ -231,7 +231,7 @@ function Cart() {
                     <div className="flex items-center gap-6">
 
                       <img
-                        src={item.product.image}
+                        src={item.product.images?.[0] || item.product.image}
                         alt={item.product.name}
                         className="w-28 h-28 object-cover rounded-2xl border"
                       />
@@ -325,64 +325,64 @@ function Cart() {
               </div>
               <div className="bg-gradient-to-br from-white to-slate-50 p-6 rounded-2xl shadow-lg border border-slate-200 mb-6">
 
-  <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-    📍 Delivery Address
-  </h2>
+                <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  📍 Delivery Address
+                </h2>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-    <input
-      placeholder="Full Name"
-      onChange={(e) =>
-        setAddress({ ...address, fullName: e.target.value })
-      }
-      className="px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
-    />
+                  <input
+                    placeholder="Full Name"
+                    onChange={(e) =>
+                      setAddress({ ...address, fullName: e.target.value })
+                    }
+                    className="px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
+                  />
 
-    <input
-      placeholder="Phone Number"
-      onChange={(e) =>
-        setAddress({ ...address, phone: e.target.value })
-      }
-      className="px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
-    />
+                  <input
+                    placeholder="Phone Number"
+                    onChange={(e) =>
+                      setAddress({ ...address, phone: e.target.value })
+                    }
+                    className="px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
+                  />
 
-    <input
-      placeholder="Street Address"
-      onChange={(e) =>
-        setAddress({ ...address, street: e.target.value })
-      }
-      className="md:col-span-2 px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
-    />
+                  <input
+                    placeholder="Street Address"
+                    onChange={(e) =>
+                      setAddress({ ...address, street: e.target.value })
+                    }
+                    className="md:col-span-2 px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
+                  />
 
-    <input
-      placeholder="City"
-      onChange={(e) =>
-        setAddress({ ...address, city: e.target.value })
-      }
-      className="px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
-    />
+                  <input
+                    placeholder="City"
+                    onChange={(e) =>
+                      setAddress({ ...address, city: e.target.value })
+                    }
+                    className="px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
+                  />
 
-    <input
-      placeholder="State"
-      onChange={(e) =>
-        setAddress({ ...address, state: e.target.value })
-      }
-      className="px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
-    />
+                  <input
+                    placeholder="State"
+                    onChange={(e) =>
+                      setAddress({ ...address, state: e.target.value })
+                    }
+                    className="px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
+                  />
 
-    <input
-      placeholder="Pincode"
-      onChange={(e) =>
-        setAddress({ ...address, pincode: e.target.value })
-      }
-      className="px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
-    />
+                  <input
+                    placeholder="Pincode"
+                    onChange={(e) =>
+                      setAddress({ ...address, pincode: e.target.value })
+                    }
+                    className="px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
+                  />
 
-  </div>
+                </div>
 
-</div>
-            
+              </div>
+
               <button
                 onClick={demoPayment}
                 className="w-full bg-green-600 text-white py-4 rounded-xl"

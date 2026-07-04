@@ -120,7 +120,7 @@ function Wishlist() {
                   <div className="relative bg-gray-100 overflow-hidden">
 
                     <img
-                      src={item.product.image}
+                      src={item.product.images?.[0] || item.product.image}
                       alt={item.product.name}
                       className="w-full h-72 object-contain p-6 group-hover:scale-110 transition duration-500"
                     />

@@ -6,9 +6,6 @@ const { Server } = require("socket.io");
 const app = require("./app");
 const connectDB = require("./config/db");
 
-connectDB();
-
-
 const server = http.createServer(app);
 
 const io = new Server(server, {
@@ -21,20 +18,22 @@ const io = new Server(server, {
   },
 });
 
-io.on("connection", (socket) => {
-  console.log("User connected:", socket.id);
-
-  socket.on("disconnect", () => {
-    console.log("User disconnected:", socket.id);
-  });
-});
-
-
 app.set("io", io);
-
 
 const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+const startServer = async () => {
+  try {
+    await connectDB(); // 🔥 IMPORTANT
+
+    server.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+
+  } catch (err) {
+    console.error("DB connection failed:", err);
+    process.exit(1);
+  }
+};
+
+startServer();

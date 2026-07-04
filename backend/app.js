@@ -16,7 +16,6 @@ const paymentRoutes = require("./routes/paymentRoutes");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-const cors = require("cors");
 
 app.use(
   cors({

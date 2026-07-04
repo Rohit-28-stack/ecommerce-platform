@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import API from "/Ecommerce-web/frontend/src/services/api";
+import API from "../../services/api";
 import toast from "react-hot-toast";
 
 function ManageProducts() {

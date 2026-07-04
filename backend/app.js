@@ -16,10 +16,19 @@ const paymentRoutes = require("./routes/paymentRoutes");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors({
-  origin: process.env.CLIENT_URL,
-  credentials: true
-}));
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://ecommerce-platform-pied.vercel.app",
+      "https://ecommerce-platform-4zddxz20j-rohits-projects-61d648e9.vercel.app",
+      "https://ecommerce-platform-git-main-rohits-projects-61d648e9.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 
 app.use("/users", userRoutes);
 app.use("/products",productrouter)

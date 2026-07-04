@@ -8,10 +8,10 @@ const connectDB = require("./config/db");
 
 connectDB();
 
-// 🔥 Create HTTP server from Express app
+
 const server = http.createServer(app);
 
-// 🔥 Attach Socket.io
+
 const io = new Server(server, {
   cors: {
     origin: "http://localhost:5173", // frontend URL
@@ -19,7 +19,6 @@ const io = new Server(server, {
   },
 });
 
-// 🔥 Socket connection
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
@@ -28,10 +27,12 @@ io.on("connection", (socket) => {
   });
 });
 
-// 🔥 Make io accessible in controllers
+
 app.set("io", io);
 
-// 🔥 IMPORTANT: use server.listen instead of app.listen
-server.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

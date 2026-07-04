@@ -23,7 +23,7 @@ const getCart=async(req,res)=>{
             user: req.user.id
         }).populate("product");
 
-        // Remove items whose product was deleted
+     
         cart = cart.filter(item => item.product !== null);
 
         res.status(200).json(cart);

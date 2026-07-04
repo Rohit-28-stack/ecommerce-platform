@@ -16,9 +16,13 @@ const paymentRoutes = require("./routes/paymentRoutes");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors());
-
-
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}));
+app.get("/", (req, res) => {
+  res.send("Ecommerce Backend is running 🚀");
+});
 app.use("/users", userRoutes);
 app.use("/products",productrouter)
 app.use("/cart",cartRouter)

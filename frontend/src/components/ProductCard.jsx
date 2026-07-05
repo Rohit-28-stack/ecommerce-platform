@@ -18,17 +18,17 @@ function ProductCard({ product }) {
     } catch (err) {
       console.log(err);
 
-    if (
-      err.response?.status === 401 ||
-      err.response?.data?.message === "No token provided"
-    ) {
-      toast.error("Please login first.");
-      navigate("/login");
-      return;
-    }
+      if (
+        err.response?.status === 401 ||
+        err.response?.data?.message === "No token provided"
+      ) {
+        toast.error("Please login first.");
+        navigate("/login");
+        return;
+      }
 
-    toast.error(err.response?.data?.message || "Failed to add to cart");
-  }
+      toast.error(err.response?.data?.message || "Failed to add to cart");
+    } 
   };
 
   const addToWishlist = async () => {
@@ -40,6 +40,16 @@ function ProductCard({ product }) {
       toast.success("Added to wishlist");
     } catch (err) {
       console.log(err);
+
+      if (
+        err.response?.status === 401 ||
+        err.response?.data?.message === "No token provided"
+      ) {
+        toast.error("Please login first.");
+        navigate("/login");
+        return;
+      }
+
       toast.error(err.response?.data?.message || "Failed to add to wishlist");
     }
   };

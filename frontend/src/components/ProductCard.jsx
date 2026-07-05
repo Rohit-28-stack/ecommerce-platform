@@ -17,8 +17,18 @@ function ProductCard({ product }) {
 
     } catch (err) {
       console.log(err);
-      toast.error(err.response?.data?.message || "Failed to add to cart");
+
+    if (
+      err.response?.status === 401 ||
+      err.response?.data?.message === "No token provided"
+    ) {
+      toast.error("Please login first.");
+      navigate("/login");
+      return;
     }
+
+    toast.error(err.response?.data?.message || "Failed to add to cart");
+  }
   };
 
   const addToWishlist = async () => {
